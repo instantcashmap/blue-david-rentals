@@ -291,10 +291,44 @@ function ApplyScreen({ onBack, flash, onApproved }) {
   const required = ['fullName','email','phone','usCitizen','nvLicense','willDrive','hasInsurance','hasBank','dob','rentalLength','startDate'];
   const complete = required.every(k => String(form[k]).trim().length > 0);
 
-  const submit = () => {
+  const submit = async () => {
     if (!complete) { flash('Please fill all required fields'); return; }
     setSubmitting(true);
-    setTimeout(() => { setSubmitting(false); setSubmitted(true); if (typeof window !== 'undefined') localStorage.setItem('bd_applied', 'true'); if (onApproved) onApproved(); }, 900);
+    try {
+      const payload = {
+        access_key: '8940a5fa-bdf7-4d35-8aec-355a06844e76',
+        subject: 'New Driver Application — ' + form.fullName,
+        from_name: 'Blue David Rentals App',
+        'Full Name': form.fullName,
+        'Email': form.email,
+        'Phone': form.phone,
+        'US Citizen': form.usCitizen,
+        'Nevada Drivers License': form.nvLicense,
+        'Will Drive For Rideshare': form.willDrive,
+        'Has Own Auto Insurance': form.hasInsurance,
+        'Has Bank / Zelle': form.hasBank,
+        'Date of Birth': form.dob,
+        'Rental Length': form.rentalLength,
+        'Start Date': form.startDate,
+      };
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        if (typeof window !== 'undefined') localStorage.setItem('bd_applied', 'true');
+        if (onApproved) onApproved();
+      } else {
+        flash('Submission failed. Please try again.');
+      }
+    } catch (err) {
+      flash('Network error. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
