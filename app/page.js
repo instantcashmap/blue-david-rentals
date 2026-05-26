@@ -172,6 +172,17 @@ export default function Page() {
           </>
         )}
 
+        <footer className="px-4 mt-8 mb-2 text-center">
+          <div className="flex items-center justify-center gap-4 text-[10px] tracking-widest text-white/40">
+            <a href="/privacy" className="hover:text-blue-400 transition">PRIVACY POLICY</a>
+            <span className="text-white/20">·</span>
+            <a href="/terms" className="hover:text-blue-400 transition">TERMS OF SERVICE</a>
+          </div>
+          <div className="mt-3 text-[10px] tracking-widest text-white/30">
+            © {new Date().getFullYear()} BLUE DAVID RENTALS · LAS VEGAS, NV
+          </div>
+        </footer>
+
         <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px] bg-[#05070f]/95 backdrop-blur-xl border-t border-white/10 z-40">
           <div className="grid grid-cols-4 py-2">
             <NavBtn icon={Home} label="HOME" active={activeTab === 'home'} onClick={() => setActiveTab('home')} />
@@ -299,6 +310,7 @@ function ApplyScreen({ onBack, flash, onApproved }) {
         access_key: '8940a5fa-bdf7-4d35-8aec-355a06844e76',
         subject: 'New Driver Application — ' + form.fullName,
         from_name: 'Blue David Rentals App',
+        botcheck: '',
         'Full Name': form.fullName,
         'Email': form.email,
         'Phone': form.phone,
