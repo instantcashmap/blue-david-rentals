@@ -74,9 +74,7 @@ export default function Page() {
                 <div className={mounted ? 'anim-fade-up' : 'opacity-0'}>
                   <img src="/bd_logo.png" alt="Blue David Rentals" className="h-20 w-auto" style={{filter:'drop-shadow(0 0 24px rgba(59,130,246,0.6))'}} />
                 </div>
-                <button onClick={() => setMenuOpen(true)} className="w-10 h-10 flex items-center justify-center rounded-full bg-black/40 border border-white/15 active:scale-95 transition">
-                  <Menu size={20} />
-                </button>
+
               </header>
 
               <div className="relative z-20 px-5 pt-8">
