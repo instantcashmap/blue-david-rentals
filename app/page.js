@@ -519,7 +519,7 @@ function ContactScreen({ onBack }) {
           </div>
           <div className="flex-1 min-w-0">
             <div className="text-[10px] font-bold tracking-widest text-white/60">FACEBOOK</div>
-            <div className="font-display text-base mt-0.5 truncate">@Bluedavidllc</div>
+            <div className="font-display text-base mt-0.5 truncate">@BlueDavid</div>
           </div>
           <ArrowRight size={18} className="text-blue-500 group-hover:translate-x-0.5 transition-transform" />
         </a>
